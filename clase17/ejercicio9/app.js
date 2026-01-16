@@ -10,17 +10,31 @@ o ¿Cuál es la posición del número 22?
 o ¿Cuál es la posición del número 100? */
 
 let list = [12, 3, 5, 7, 1, 22, 47, 100];
-let orederedList = list.sort((a, b) => a - b);
-console.log(`Lista ordenada para hacer la búsqueda: ${orederedList}`);
+//list.sort((a, b) => a - b); Método nativo
+
+function bubbleSort(list) {
+  for (let index = 0; index < list.length - 1; index++) {
+    for (let j = 0; j < list.length - 1; j++) {
+      if (list[j] > list[j + 1]) {
+        let temp = list[j];
+        list[j] = list[j + 1];
+        list[j + 1] = temp;
+      }
+    }
+  }
+  return list;
+}
+
+console.log(`Lista ordenada para hacer la búsqueda: ${bubbleSort(list)}`);
 
 function binarySearch(list, number) {
   let init = 0;
-  let end = orederedList.length - 1;
+  let end = list.length - 1;
 
   while (init <= end) {
     // Calcular el punto middle (evita desbordamiento con Math.floor)
     let middle = Math.floor((init + end) / 2);
-    let middleValue = orederedList[middle];
+    let middleValue = list[middle];
 
     if (middleValue === number) {
       return middle; // ¡Elemento encontrado!
